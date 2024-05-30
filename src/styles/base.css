@@ -1,53 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root,
-  html[data-theme="light"] {
-    --color-fill: 251, 254, 251;
-    --color-text-base: 40, 39, 40;
-    --color-accent: 0, 108, 172;
-    --color-card: 230, 230, 230;
-    --color-card-muted: 205, 205, 205;
-    --color-border: 236, 233, 233;
+  :root {
+    --color-fill: 241, 240, 236; /* Background color */
+    --color-text-base: 20, 20, 20; /* Almost black text */
+    --color-accent: 64, 86, 161; /* Blue for accents */
+    --color-highlight: 241, 60, 32; /* Red for highlights */
+    --color-secondary: 249, 92, 164; /* Pink for secondary accents */
+    --color-muted: 237, 120, 69; /* Orange for muted elements */
+    --color-card: 250, 250, 250; /* Light gray for cards */
+    --color-card-muted: 240, 240, 240; /* Muted light gray for muted elements */
+    --color-border: 220, 220, 220; /* Light border color */
+    --color-h1-h2-title1: 211, 185, 99; /* Golden Yellow */
+    --color-h1-h2-title2: 137, 94, 85; /* Brownish */
+    --color-h1-h2-title3: 135, 105, 152; /* Purple */
+    --color-code-bg: 230, 230, 230; /* Darker background for code blocks */
+    --color-code-text: 36, 41, 46; /* Dark text for code blocks */
+    --color-code-keyword: 224, 108, 117; /* Vivid red for keywords */
+    --color-code-string: 152, 195, 121; /* Brighter green for strings */
+    --color-code-function: 198, 120, 221; /* Bright purple for functions */
+    --color-code-comment: 106, 115, 125; /* Gray for comments */
+    --color-code-number: 209, 154, 102; /* Orange for numbers */
   }
-  html[data-theme="dark"] {
-    --color-fill: 33, 39, 55;
-    --color-text-base: 234, 237, 243;
-    --color-accent: 255, 107, 1;
-    --color-card: 52, 63, 96;
-    --color-card-muted: 138, 51, 2;
-    --color-border: 171, 75, 8;
-  }
-  #sun-svg,
-  html[data-theme="dark"] #moon-svg {
-    display: none;
-  }
-  #moon-svg,
-  html[data-theme="dark"] #sun-svg {
-    display: block;
-  }
+
   body {
-    @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base 
-    selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+    background-color: rgb(var(--color-fill));
+    color: rgb(var(--color-text-base));
+    font-family: "IBM Plex Mono", monospace;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
   }
+
+  a {
+    color: rgb(var(--color-accent));
+  }
+
+  .card {
+    background-color: rgb(var(--color-card));
+    border: 1px solid rgb(var(--color-border));
+  }
+
+  .muted {
+    background-color: rgb(var(--color-card-muted));
+  }
+
+  h1 {
+    font-family: "Sora", sans-serif;
+    color: rgb(var(--color-h1-h2-title1));
+  }
+
+  h2 {
+    font-family: "Inconsolata", monospace !important;
+    color: rgb(var(--color-h1-h2-title2)) !important;
+  }
+
+  .page-title {
+    font-family: "Sora", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(var(--color-h1-h2-title3));
+    line-height: 1.2;
+  }
+
+  .page-heading {
+    font-family: "Sora", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(var(--color-h1-h2-title1));
+  }
+
   section,
   footer {
     @apply mx-auto max-w-3xl px-4;
   }
+
+  .focus-outline {
+    @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
+  }
+
   a {
     @apply outline-2 outline-offset-1 outline-skin-fill 
     focus-visible:no-underline focus-visible:outline-dashed;
   }
+
   svg {
     @apply inline-block h-6 w-6 fill-skin-base group-hover:fill-skin-accent;
   }
+
   svg.icon-tabler {
     @apply inline-block h-6 w-6 scale-125 fill-transparent 
     stroke-current stroke-2 opacity-90 group-hover:fill-transparent 
     sm:scale-110;
   }
+
   .prose {
     @apply prose-headings:!mb-3 prose-headings:!text-skin-base 
     prose-h3:italic prose-p:!text-skin-base 
@@ -56,7 +107,6 @@
     prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
     prose-figcaption:!text-skin-base prose-figcaption:opacity-70
     prose-strong:!text-skin-base
-
     
     prose-code:rounded prose-code:bg-skin-card 
     prose-code:bg-opacity-75 prose-code:p-1 
@@ -69,23 +119,34 @@
     prose-img:mx-auto prose-img:border-2 
     prose-img:border-skin-line prose-hr:!border-skin-line;
   }
+
+  .prose h2 {
+    font-family: "Inconsolata", monospace !important;
+    color: rgb(var(--color-h1-h2-title2)) !important;
+  }
+
   .prose a {
     @apply break-words hover:!text-skin-accent;
   }
+
   .prose thead th:first-child,
   tbody td:first-child,
   tfoot td:first-child {
     padding-left: 0.5714286em;
   }
+
   .prose h2#table-of-contents {
     @apply mb-2;
   }
+
   .prose details {
     @apply inline-block cursor-pointer select-none text-skin-base;
   }
+
   .prose summary {
     @apply focus-outline;
   }
+
   .prose h2#table-of-contents + p {
     @apply hidden;
   }
@@ -118,10 +179,206 @@
   code,
   blockquote {
     word-wrap: break-word;
+    font-family: "Inconsolata", monospace;
   }
 
   pre > code {
     white-space: pre;
+    font-family: "Inconsolata", monospace;
+  }
+
+  pre {
+    background-color: rgb(var(--color-code-bg)) !important;
+    color: rgb(var(--color-code-text)) !important;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Code highlighting */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: rgb(var(--color-code-comment)) !important;
+  }
+
+  .token.punctuation {
+    color: rgb(var(--color-code-text)) !important;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: rgb(var(--color-code-keyword)) !important;
+  }
+
+  .token.boolean,
+  .token.number {
+    color: rgb(var(--color-code-number)) !important;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: rgb(var(--color-code-string)) !important;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .token.language-css .string,
+  .style .token.string {
+    color: rgb(var(--color-code-text)) !important;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: rgb(var(--color-code-keyword)) !important;
+  }
+
+  .token.function {
+    color: rgb(var(--color-code-function)) !important;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: rgb(var(--color-code-keyword)) !important;
+  }
+
+  /* Custom styles for the hero section */
+  #hero {
+    @apply pb-6 pt-8;
+  }
+  .hero-content {
+    position: relative;
+    display: flex;
+  }
+
+  .avatar {
+    @apply w-80 h-auto mr-4;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8rem; /* Adjust based on the size of the avatar */
+  }
+
+  .title-with-rss {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  #hero h1 {
+    margin: 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  #hero .rss-link {
+    margin-left: 0.5rem;
+  }
+
+  #hero .rss-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--color-accent);
+  }
+
+  #hero p {
+    margin: 0.5rem 0;
+  }
+
+  .social-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-links {
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+  }
+
+  #featured,
+  #recent-posts {
+    @apply pb-6 pt-12;
+  }
+  #featured h2,
+  #recent-posts h2 {
+    @apply text-2xl font-semibold tracking-wide;
+  }
+  .all-posts-btn-wrapper {
+    @apply my-8 text-center;
+  }
+
+  @media (min-width: 640px) {
+    .hero-content {
+      flex-direction: row;
+    }
+
+    .avatar {
+      @apply w-80 h-auto;
+    }
+
+    .hero-text {
+      margin-left: 2rem; /* Adjust based on the size of the avatar */
+    }
+
+    #hero h1 {
+      font-size: 3rem;
+    }
+
+    #hero .rss-link {
+      margin-left: 1rem;
+    }
+
+    #hero .rss-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .avatar {
+      display: none; /* Hide avatar on mobile screens */
+    }
+    .hero-text {
+      margin-left: 0rem; /* Adjust based on the size of the avatar */
+    }
+    nav ul {
+      @apply flex flex-col items-center;
+    }
+    
+    nav ul li {
+      @apply w-full;
+    }
+    
+    nav ul li a,
+    nav ul li button {
+      @apply w-full text-center;
+    }
+  
+    /* Ensure the search button is displayed as a block element */
+    .search-icon {
+      @apply block w-full text-center mt-2;
+    }
+    
   }
 }
 
