@@ -27,7 +27,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         <img src="/assets/Person.png" alt="Avatar" class="avatar" />
         <div class="hero-text">
           <div class="title-with-rss">
-            <h1>hello world!</h1>
+            <h1>hey there!</h1>
             <a
               target="_blank"
               href="/rss.xml"
@@ -47,23 +47,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
 
           <p>
-            AstroPaper is a minimal, responsive, accessible and SEO-friendly
-            Astro blog theme
+            I'm Ashrith - aerospace engineer, technology enthusiast, and explorer of data science and artificial intelligence
           </p>
           <p>
-            Read the blog posts or check
+            Read my blog posts or check
             <LinkButton
               className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-              href="https://github.com/satnaing/astro-paper#readme"
+              href="/about"
             >
-              README
-            </LinkButton> for more info.
+              click here
+            </LinkButton> to learn more about me
           </p>
           {
             // only display if at least one social link is enabled
             socialCount > 0 && (
               <div class="social-wrapper">
-                <div class="social-links">Social Links:</div>
+                <div class="social-links">Find me @: </div>
                 <Socials />
               </div>
             )
