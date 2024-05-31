@@ -52,7 +52,7 @@
 
   h1 {
     font-family: "Sora", sans-serif;
-    color: rgb(var(--color-h1-h2-title1));
+    color: rgb(var(--color-h1-h2-title1))!important;
   }
 
   h2 {
