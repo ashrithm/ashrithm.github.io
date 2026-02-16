@@ -3,7 +3,7 @@ author: Ashrith Yerrapragada
 pubDatetime: 2024-05-31T09:22:43.282Z
 modDatetime: 2024-05-31T09:22:43.282Z
 title: Hello World!
-slug: hello world, welcome to my blog
+slug: hello-world
 featured: true
 draft: false
 tags:
