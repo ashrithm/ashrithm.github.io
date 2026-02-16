@@ -1,45 +1,23 @@
-import type { Site, SocialObjects } from "./types";
-
-export const SITE: Site = {
-  website: "https://ashrithm.com/", // replace this with your deployed domain
+export const SITE = {
+  website: "https://ashrithm.com/",
   author: "Ashrith M Yerrapragada",
+  profile: "https://ashrithm.com/",
   desc: "ashrith's blog",
   title: "ashrithm",
   ogImage: "astropaper-og.jpg",
-  lightAndDarkMode: false,
+  lightAndDarkMode: true,
+  postPerIndex: 4,
   postPerPage: 3,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-};
-
-export const LOCALE = {
-  lang: "en", // html lang code. Set this empty and default will be "en"
-  langTag: ["en-EN"], // BCP 47 Language Tags. Set this empty [] to use the environment default
+  scheduledPostMargin: 15 * 60 * 1000,
+  showArchives: false,
+  showBackButton: true,
+  editPost: {
+    enabled: false,
+    text: "Edit page",
+    url: "https://github.com/ashrithm/ashrithm/edit/main/",
+  },
+  dynamicOgImage: true,
+  dir: "ltr",
+  lang: "en",
+  timezone: "America/New_York",
 } as const;
-
-export const LOGO_IMAGE = {
-  enable: false,
-  svg: true,
-  width: 216,
-  height: 46,
-};
-
-export const SOCIALS: SocialObjects = [
-  {
-    name: "Github",
-    href: "https://github.com/ashrithm",
-    linkTitle: ` ${SITE.title} on Github`,
-    active: true,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/ashrithm",
-    linkTitle: `${SITE.title} on LinkedIn`,
-    active: true,
-  },
-  {
-    name: "Mail",
-    href: "mailto:me@ashrithm.com",
-    linkTitle: `Send an email to ${SITE.title}`,
-    active: true,
-  },
-];

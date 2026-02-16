@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { slugifyStr, slugifyAll } from "@/utils/slugify";
+import { getPath } from "@/utils/getPath";
+import Datetime from "./Datetime.astro";
+
+type Props = {
+  variant?: "h2" | "h3";
+} & CollectionEntry<"blog">;
+
+const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+
+const { title, description, tags, ...props } = data;
+const slugifiedTags = tags ? slugifyAll(tags) : [];
+---
+
+<li class="my-7">
+  <div class="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between">
+    <div class="flex flex-wrap items-baseline gap-2.5">
+      <a
+        href={getPath(id, filePath)}
+        class:list={[
+          "text-foreground font-medium text-lg",
+          "no-underline decoration-dashed underline-offset-4 hover:underline hover:text-muted",
+          "focus-visible:underline focus-visible:underline-offset-0",
+        ]}
+      >
+        <Heading
+          style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
+          class="inline text-lg"
+        >
+          {title}
+        </Heading>
+      </a>
+      {slugifiedTags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5">
+          {slugifiedTags.map((tag, i) => (
+            <a
+              href={`/tags/${tag}/`}
+              class="rounded bg-muted/20 px-2 py-0.5 text-sm text-muted hover:text-foreground transition-colors"
+            >
+              {tags![i]}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+    <Datetime class="shrink-0 text-muted" {...props} />
+  </div>
+  {description && (
+    <p class="mt-1.5 text-muted">{description}</p>
+  )}
+</li>

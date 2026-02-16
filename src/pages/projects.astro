@@ -1,0 +1,60 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { SITE } from "@/config";
+import { slugifyStr } from "@/utils/slugify";
+
+const projects = [
+  {
+    title: "ashrithm.com",
+    url: "https://github.com/ashrithm/ashrithm",
+    description:
+      "This website — a minimal, typography-driven personal site built with Astro, Tailwind CSS, and self-hosted iA Writer Quattro.",
+    tags: ["Astro", "Tailwind CSS", "TypeScript"],
+  },
+];
+---
+
+<Layout title={`Projects | ${SITE.title}`}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-4">
+    <h1 class="text-4xl font-bold sm:text-5xl">Projects</h1>
+    <p class="mt-3 text-lg text-muted">Things I've built or contributed to.</p>
+
+    <ul class="mt-8 pb-14">
+      {
+        projects.map(project => (
+          <li class="my-6 border-b border-border pb-6 last:border-0">
+            <a
+              href={project.url}
+              class="text-lg font-medium decoration-dashed underline-offset-4 hover:underline hover:text-muted"
+              target={project.url.startsWith("http") ? "_blank" : undefined}
+              rel={
+                project.url.startsWith("http")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+            >
+              {project.title}
+            </a>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              {project.tags.map(tag => (
+                <a
+                  href={`/tags/${slugifyStr(tag)}`}
+                  class="rounded bg-muted/20 px-2 py-0.5 text-sm text-muted hover:text-foreground"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+            <p class="mt-2 text-muted">{project.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+  <Footer />
+</Layout>
