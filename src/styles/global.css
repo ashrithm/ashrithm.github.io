@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@import "./typography.css";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* iA Writer Quattro — self-hosted */
+@font-face {
+  font-family: "iA Writer Quattro";
+  src: url("/fonts/iAWriterQuattroS-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "iA Writer Quattro";
+  src: url("/fonts/iAWriterQuattroS-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "iA Writer Quattro";
+  src: url("/fonts/iAWriterQuattroS-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "iA Writer Quattro";
+  src: url("/fonts/iAWriterQuattroS-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root,
+html[data-theme="light"] {
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --accent: #1a1a1a;
+  --muted: #888888;
+  --border: #e5e5e5;
+  --code-bg: #f0f0f0;
+}
+
+html[data-theme="dark"] {
+  --background: #111111;
+  --foreground: #e5e5e5;
+  --accent: #e5e5e5;
+  --muted: #777777;
+  --border: #2a2a2a;
+  --code-bg: #1a1a1a;
+}
+
+@theme inline {
+  --font-body: "iA Writer Quattro", Georgia, serif;
+  --font-code: "SF Mono", "SFMono-Regular", Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-code-bg: var(--code-bg);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-accent/75;
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-muted) transparent;
+  }
+  html {
+    @apply overflow-y-scroll scroll-smooth text-[17px] sm:text-[18px];
+  }
+  body {
+    @apply flex min-h-svh flex-col bg-background font-body text-foreground leading-relaxed selection:bg-foreground/25 selection:text-background;
+  }
+  a,
+  button {
+    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility max-w-app {
+  @apply max-w-4xl;
+}
+
+@utility app-layout {
+  @apply mx-auto w-full max-w-app px-4 sm:px-6;
+}
+
+.active-nav {
+  @apply underline decoration-dashed underline-offset-4;
+}
+
+/* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 1rem;
+}
